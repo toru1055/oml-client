@@ -22,6 +22,10 @@ public class ScoreLabel implements Label {
     return null;
   }
 
+  public void setScore(Double d) {
+    this.score = d;
+  }
+
   public Double getScore() {
     return score;
   }
