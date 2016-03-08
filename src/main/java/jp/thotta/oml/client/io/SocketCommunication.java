@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 
 /**
  * Server/Client間での通信を管理するクラス.
- * TODO: 共通ライブラリに移動
  */
 public class SocketCommunication {
   public static final int TRAIN_BATCH_PORT = 9001;

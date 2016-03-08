@@ -51,6 +51,14 @@ public class OmlClient {
     return comm.recvLabel();
   }
 
+  public Label predictLabel(String features) throws IOException {
+    comm.sendFeatures(features);
+    String labelText = comm.recvLabel();
+    Label label = LabelFactory.createLabel(this.labelModeText);
+    label.parse(labelText);
+    return label;
+  }
+
   public static OmlClient createTrainBatchConnection(String host)
     throws IOException, UnknownHostException {
     OmlClient client = new OmlClient(host, SocketCommunication.TRAIN_BATCH_PORT);
