@@ -4,14 +4,23 @@ package jp.thotta.oml.client.io;
  * 回帰用のラベル.
  */
 public class ScoreLabel implements Label {
+  public static final String NULL_LABEL = "\001NULL-LABEL\001";
   Double score = null;
 
   public void parse(String labelText) {
-    score = Double.parseDouble(labelText);
+    if(NULL_LABEL.equals(labelText)) {
+      score = null;
+    } else {
+      score = Double.parseDouble(labelText);
+    }
   }
 
   public String getText() {
-    return String.valueOf(score);
+    if(score != null) {
+      return String.valueOf(score);
+    } else {
+      return NULL_LABEL;
+    }
   }
 
   public int getLabelMode() {

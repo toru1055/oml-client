@@ -4,21 +4,26 @@ package jp.thotta.oml.client.io;
  * ２クラス分類用のラベル.
  */
 public class BinaryClassLabel implements Label {
+  public static final String NULL_LABEL = "\001NULL-LABEL\001";
   public static String POSITIVE_LABEL = "positive";
   public static String NEGATIVE_LABEL = "negative";
   Boolean label = null;
 
   public void parse(String labelText) {
-    if(POSITIVE_LABEL.equals(labelText)) {
-      label = true;
+    if(!NULL_LABEL.equals(labelText)) {
+      if(POSITIVE_LABEL.equals(labelText)) {
+        label = true;
+      } else {
+        label = false;
+      }
     } else {
-      label = false;
+      label = null;
     }
   }
 
   public String getText() {
     if(label == null) {
-      return null;
+      return NULL_LABEL;
     }
     return label ? POSITIVE_LABEL : NEGATIVE_LABEL;
   }
